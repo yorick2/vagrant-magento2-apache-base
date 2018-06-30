@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
 
+# mysql root password
+myVagrantMysqlPassword='root'
+
 sudo apt-get update
 
 # Install MySQL
-
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password secret'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password secret'
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password ${myVagrantMysqlPassword}"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${myVagrantMysqlPassword}"
 sudo apt-get install -y mysql-server-5.6
 
 #
 # Configure MySQL Remote Access
 #
-MYSQLAUTH="--user=root --password=secret"
-mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO root@'localhost' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql $MYSQLAUTH -e "CREATE USER 'magento'@'localhost' IDENTIFIED BY 'secret';"
-mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'localhost' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql $MYSQLAUTH -e "FLUSH PRIVILEGES;"
-mysql $MYSQLAUTH -e "CREATE DATABASE magento;"
+# MYSQLAUTH="--user=root --password=${myVagrantMysqlPassword}"
+# mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO root@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
+# mysql $MYSQLAUTH -e "CREATE USER 'magento'@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}';"
+# mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
+# mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'%' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
+# mysql $MYSQLAUTH -e "FLUSH PRIVILEGES;"
+# mysql $MYSQLAUTH -e "CREATE DATABASE magento;"
 
 # Install Apache and PHP
 sudo apt-get -y update
@@ -39,6 +41,12 @@ sudo chmod +x /usr/local/bin/composer
 #export APACHE_LOCK_DIR=/var/lock/apache2
 #export APACHE_PID_FILE=/var/run/apache2/apache2.pid
 
+# vargrant mounts the project folder vagrant run from into /vagrant
+# link /vagrant/sites into the /var/www folder
+rm -rf /var/www
+ln -fs /vagrant/sites /var/www
+
+
 # Enable Apache rewrite module
 sudo a2enmod rewrite
 
@@ -46,7 +54,7 @@ sudo a2enmod rewrite
 sudo rm -f /etc/apache2/sites-enabled/000-default.conf
 #sudo a2dissite 000-default
 
-
 # Add the Apache virtual host file
-sudo cp /vagrant/config/apache_default_vhost /etc/apache2/sites-enabled/magento2.conf
+sudo ln -fs /vagrant/config/apache-httpd-vhosts.conf /etc/apache2/sites-enabled/apache-httpd-vhosts.conf
 sudo apache2ctl restart
+

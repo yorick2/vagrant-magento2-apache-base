@@ -13,9 +13,9 @@ cd /var/www/magento2/
 php bin/magento setup:install \
         --cleanup-database \
         --db-host=localhost \
-        --db-name=magento \
+        --db-name=root \
         --db-user=magento \
-        --db-password=secret \
+        --db-password=root \
         --backend-frontname=admin \
         --base-url=http://127.0.0.1:8080/ \
         --language=en_US \
@@ -25,5 +25,5 @@ php bin/magento setup:install \
         --admin-firstname=John \
         --admin-email=john.smith@example.com \
         --admin-user=admin \
-        --admin-password=admin123 \
+        --admin-password=password1 \
         --use-secure=0

@@ -37,7 +37,9 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.  
-  config.vm.synced_folder "../magento2", "/var/www/magento2", :mount_options => ["dmode=777","fmode=666"]
+
+  # mysql data backup
+  config.vm.synced_folder "mysqlBackup/", "/var/lib/mysql/",:mount_options => ["dmode=777","fmode=666"] 
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -62,6 +64,7 @@ Vagrant.configure(2) do |config|
   #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
   # end
 
+ 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
