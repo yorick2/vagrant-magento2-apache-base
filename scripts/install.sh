@@ -25,7 +25,11 @@ sudo apt-get install -y mysql-server-5.6
 sudo apt-get -y update
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get -y update
-sudo apt-get -y install php7.0 php7.0-mcrypt php7.0-mbstring php7.0-curl php7.0-cli php7.0-mysql php7.0-gd php7.0-intl php7.0-xsl php7.0-zip php7.0-bcmath php7.0-soap git
+sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip php5.6-bcmath php5.6-soap git
+
+
+
+
 
 # Install Composer.
 cd /tmp
@@ -56,5 +60,10 @@ sudo rm -f /etc/apache2/sites-enabled/000-default.conf
 
 # Add the Apache virtual host file
 sudo ln -fs /vagrant/config/apache-httpd-vhosts.conf /etc/apache2/sites-enabled/apache-httpd-vhosts.conf
+
+# XDEBUG 
+# wget https://xdebug.org/files/xdebug-2.5.5.tgz tar -xvzf xdebug-2.5.5.tgz cd xdebug-2.5.5/ phpize ./configure make sudo cp modules/xdebug.so /usr/lib/php/20151012/
+# reboot_webserver_helper
+
 sudo apache2ctl restart
 
