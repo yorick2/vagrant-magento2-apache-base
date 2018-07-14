@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "33.33.33.34"
+  config.vm.network "private_network", ip: "33.33.33.33"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -52,8 +52,8 @@ Vagrant.configure(2) do |config|
     #vb.gui = true
   
     # OS + MySQL + Apache
-    vb.memory = 2048
-    vb.cpus = 2
+    vb.memory = 1048
+    vb.cpus =1 
   end
   
   # View the documentation for the provider you are using for more
