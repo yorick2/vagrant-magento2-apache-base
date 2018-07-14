@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # Show what we execute
-set -x
+# set -x
 
-cd /var/www/magento2/
+# cd /var/www/magento2/
 
-# Wipe out all caches
-/bin/rm -rf var/*
+# # Wipe out all caches
+# /bin/rm -rf var/*
 
 # Set up, rebuilding database from scratch.
 # Port 8080 must match what you expose via Vagrantfile.

@@ -22,11 +22,12 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 8082
+#  config.vm.network "forwarded_port", guest: 80, host: 8082, host_ip: "33.33.33.34"
+  config.vm.network "forwarded_port",  guest: 80, host: 8082
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "33.33.33.33"
+  config.vm.network "private_network", ip: "33.33.33.34"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -39,7 +40,8 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.  
 
   # mysql data backup
-  config.vm.synced_folder "mysqlBackup/", "/var/lib/mysql/",:mount_options => ["dmode=777","fmode=666"] 
+  config.vm.synced_folder "mysqlBackup/","/var/lib/mysql/", id: "sites", :mount_options => ["dmode=777","fmode=666"] 
+  config.vm.synced_folder "../sites/", "/var/www/", id: "code", :mount_options => ["dmode=777","fmode=666"] 
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

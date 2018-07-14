@@ -43,8 +43,8 @@ sudo chmod +x /usr/local/bin/composer
 
 # vargrant mounts the project folder vagrant run from into /vagrant
 # link /vagrant/sites into the /var/www folder
-rm -rf /var/www
-ln -fs /vagrant/sites /var/www
+# rm -rf /var/www
+# ln -fs /vagrant/sites /var/www
 
 
 # Enable Apache rewrite module
