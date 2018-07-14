@@ -25,11 +25,7 @@ sudo apt-get install -y mysql-server-5.6
 sudo apt-get -y update
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get -y update
-sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip php5.6-bcmath php5.6-soap git
-
-
-
-
+sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip git
 
 # Install Composer.
 cd /tmp
@@ -44,11 +40,6 @@ sudo chmod +x /usr/local/bin/composer
 #export APACHE_LOG_DIR=/var/log/apache2
 #export APACHE_LOCK_DIR=/var/lock/apache2
 #export APACHE_PID_FILE=/var/run/apache2/apache2.pid
-
-# vargrant mounts the project folder vagrant run from into /vagrant
-# link /vagrant/sites into the /var/www folder
-rm -rf /var/www
-ln -fs /vagrant/sites /var/www
 
 
 # Enable Apache rewrite module
