@@ -1,4 +1,4 @@
 .vagrant
-sites
-mysqlBackup
-config
+/sites
+/mysqlBackup
+/config/*
