@@ -14,11 +14,11 @@ sudo apt-get install -y mysql-server-5.6
 # Configure MySQL Remote Access
 #
 # MYSQLAUTH="--user=root --password=${myVagrantMysqlPassword}"
-# mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO root@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
+ mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO root@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
 # mysql $MYSQLAUTH -e "CREATE USER 'magento'@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}';"
 # mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'localhost' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
 # mysql $MYSQLAUTH -e "GRANT ALL ON *.* TO 'magento'@'%' IDENTIFIED BY '${myVagrantMysqlPassword}' WITH GRANT OPTION;"
-# mysql $MYSQLAUTH -e "FLUSH PRIVILEGES;"
+ mysql $MYSQLAUTH -e "FLUSH PRIVILEGES;"
 # mysql $MYSQLAUTH -e "CREATE DATABASE magento;"
 
 # Install base packages
